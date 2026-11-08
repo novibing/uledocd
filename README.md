@@ -2,7 +2,7 @@
 
 Copyright (C) 2026 Stephen Jonke
 
-This tool is open source and released under the GPL 3.0 license. Any modifications you may make to it must also be GPL 3.0 (or later) and open-source, if you decide to distribute your variant. See the included gpl-3.0.md file for details.
+This tool is open source and released under the GPL 3.0 license. Any modifications you may make to it must also be GPL 3.0 (or later) and open-source, if you decide to distribute your variant. See the included LICENSE file for details.
 
 ## What Is LED OCD?
 
