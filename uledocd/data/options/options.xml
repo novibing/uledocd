@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<options>
+  <on_startup>
+    <select_last_game>true</select_last_game>
+    <import_last_backup>false</import_last_backup>
+    <select_last_port>true</select_last_port>
+  </on_startup>
+  <backups>
+    <on_read>true</on_read>
+    <on_send>true</on_send>
+    <limit_to>20</limit_to>
+  </backups>
+  <other>
+    <verify_sends>true</verify_sends>
+  </other>
+</options>

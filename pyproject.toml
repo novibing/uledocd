@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uledocd"
+authors = [
+    {name = "Stephen Jonke", email = "sjonke@gmail.com"},
+]
+description = "Cross-platform GUI and CLI for the Comet Pinball LED OCD board for pinball machines"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "gpl-3.0"
+license-files = ["LICEN[CS]E*"]
+version = "0.9.0"
+dependencies = [
+    "pyserial >= 3.5",
+    "ttkbootstrap >= 2.2",
+    "platformdirs >= 4.14"
+]
+[project.scripts]
+uledocd_gui = "uledocd.uledocd_gui:__main__"
+uledocd_cli = "uledocd.uledocd_cli:__main__"
