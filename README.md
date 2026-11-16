@@ -28,7 +28,7 @@ To install **Unofficial LED OCD** enter the following command at the command-lin
 
     pip install uledocd
 
-If this complains that the environment is externallly managed, then you need to create and use a virtual environment:
+If this complains that the environment is externally managed, then you need to create and use a virtual environment:
 
     python -m venv venv
     source venv/bin/activate
