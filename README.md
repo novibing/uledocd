@@ -22,11 +22,25 @@ I also made improvements to the tool, adding settings, making the window resizab
 
 I also included a CLI tool to send commands to the board and receive replies. I used it in development. I provide it in case you want to play around with it, but most users will want to use the GUI.
 
+## How To Install
+
+To install **Unofficial LED OCD** enter the following command at the command-line/Terminal/Powershell:
+
+    pip install uledocd
+
+If this complains that the environment is externallly managed, then you need to create and use a virtual environment:
+
+    python -m venv venv
+    source venv/bin/activate
+    pip install uledocd
+
 ## How To Use
 
-To launch **Unofficial LED OCD** activate the virtual environment if needed ("source .venv/bin/activate") and then enter the following command at the command-line/Terminal/Powershell:
+To launch **Unofficial LED OCD** activate the virtual environment if needed ("source venv/bin/activate") and then enter the following command at the command-line/Terminal/Powershell:
 
-    ledocd
+    uledocd
+
+Once you have activated the venv (if you needed to use that), you can just run uledocd. You only need to activate if not already activated.
 
 I made **Unofficial LED OCD** very similar, for the most part, to Comet's configuration software, so see their usage instructions for how to use it:
 
