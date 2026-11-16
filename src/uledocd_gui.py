@@ -2034,7 +2034,7 @@ If you wish to keep the brightness values B1 to B8, select a Profile to save the
         return True
 
 
-def run():
+def uledocd_gui():
     parser = argparse.ArgumentParser(description="GUI for the led_ocd and gi_ocd boards",
                                     usage="uledocd_gui [-h|--help] [-p|--port TTY] [-m|--manufacturer MANUFACTURER]",
                                     epilog="Example: uledocd_gui -p /dev/ttyUSB3 -m CAPCOMA")
@@ -2059,4 +2059,4 @@ def run():
     ULEDOCD_GUI(port_name = args.port_name if args.port_name else None, manufacturer= args.manuf if args.manuf else None, data_dir = args.data_dir if args.data_dir else None, game_file = args.game_file if args.game_file else None)
 
 if __name__ == "__main__":
-    run()
+    uledocd_gui()

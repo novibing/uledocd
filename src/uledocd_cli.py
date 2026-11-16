@@ -84,7 +84,7 @@ def	ProcessCmd(cmd, cmd_args, led_ocd):
 
 
 
-def run():        
+def uledocd_cli():        
     parser = argparse.ArgumentParser(description="Command-Line interface for the led_ocd and gi_ocd boards",
                                     usage="uledocd_cli [-h|--help] [-p|--port TTY] [-m|--manufacturer MANUFACTURER] [-c|--command COMMAND]",
                                     epilog="Example: uledocd_cli -p /dev/ttyUSB3 -m CAPCOMA -c SETLP=11,3")
@@ -179,4 +179,4 @@ def run():
     
 
 if __name__ == "__main__":
-    run()
+    uledocd_cli()
