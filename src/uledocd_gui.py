@@ -155,7 +155,8 @@ class ULEDOCD_GUI:
         else:
             self.data_dir = self.dirs.user_data_dir
 
-        self.backups_dir = os.path.join(self.data_dir, BACKUPS_SUBDIR)
+        self.documents_dir = os.path.join(self.dirs.user_documents_dir, "uledocd")
+        self.backups_dir = os.path.join(self.documents_dir, BACKUPS_SUBDIR)
 
         self.games_dir = os.path.join(self.data_dir, GAMES_SUBDIR)
         default_games_dir = os.path.join(self.script_dir, DEFAULT_DATA_DIR, GAMES_SUBDIR)
@@ -1806,7 +1807,7 @@ If you wish to keep the brightness values B1 to B8, select a Profile to save the
 
 
     def ImportButtonClicked(self):
-        load_from_filename = Querybox.get_open_filename(parent=self.app, initialdir=self.backups_dir, filetypes=[("XML files", "*.xml"), ("JSON files", "*.json"), ("All files", "*.*")])
+        load_from_filename = Querybox.get_open_filename(parent=self.app, initialdir=self.documents_dir, filetypes=[("XML files", "*.xml"), ("JSON files", "*.json"), ("All files", "*.*")])
 
         if load_from_filename:
             file_extension = os.path.splitext(load_from_filename)[1].lower()
@@ -1833,7 +1834,7 @@ If you wish to keep the brightness values B1 to B8, select a Profile to save the
             self.result.set("ERROR: Settings could not be updated")
             return False
 
-        save_to_filename = Querybox.get_save_filename(parent=self.app, initialdir=self.backups_dir, defaultextension=".xml", filetypes=[("XML files", "*.xml"), ("JSON files", "*.json"), ("All files", "*.*")])
+        save_to_filename = Querybox.get_save_filename(parent=self.app, initialdir=self.documents_dir, defaultextension=".xml", filetypes=[("XML files", "*.xml"), ("JSON files", "*.json"), ("All files", "*.*")])
         file_extension = os.path.splitext(save_to_filename)[1].lower()
 
         if file_extension == ".xml":
