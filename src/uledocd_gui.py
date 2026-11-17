@@ -1461,8 +1461,8 @@ If you wish to keep the brightness values B1 to B8, select a Profile to save the
 
 
     def show_options(self):
-        options_width = 326
-        options_height = 390
+        options_width = 315
+        options_height = 330
         self.options_window = Toplevel(master=self.app, title="Options", size=(options_width, options_height), topmost=True, transient=self.app, resizable=(False, False))
         self.options_window.on_close(self.options_closed_callback)
 
