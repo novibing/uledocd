@@ -26,13 +26,15 @@ I also included a CLI tool to send commands to the board and receive replies. I 
 
 To install **Unofficial LED OCD** enter the following command at the command-line/Terminal/Powershell:
 
-    pip install uledocd
+    pip install --upgrade uledocd
 
 If this complains that the environment is externally managed, then you need to create and use a virtual environment:
 
     python -m venv venv
     source venv/bin/activate
-    pip install uledocd
+    pip install --upgrade uledocd
+
+If there is an update and you wish to install it you don't need to make the venv again. Just skip the "python -m venv venv" step.
 
 ## How To Use
 

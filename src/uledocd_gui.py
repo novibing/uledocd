@@ -156,7 +156,6 @@ class ULEDOCD_GUI:
             self.data_dir = self.dirs.user_data_dir
 
         self.backups_dir = os.path.join(self.data_dir, BACKUPS_SUBDIR)
-        default_backups_dir = os.path.join(self.script_dir, DEFAULT_DATA_DIR, BACKUPS_SUBDIR)
 
         self.games_dir = os.path.join(self.data_dir, GAMES_SUBDIR)
         default_games_dir = os.path.join(self.script_dir, DEFAULT_DATA_DIR, GAMES_SUBDIR)
@@ -176,7 +175,7 @@ class ULEDOCD_GUI:
         if not os.path.exists(self.settings_dir):
             shutil.copytree(default_settings_dir, self.settings_dir, dirs_exist_ok=True)
         if not os.path.exists(self.backups_dir):
-            shutil.copytree(default_backups_dir, self.backups_dir, dirs_exist_ok=True)                              
+            os.makedirs(self.backups_dir, exist_ok=True)                        
         if not os.path.exists(self.options_file):
             os.makedirs(self.options_dir, exist_ok=True)
             shutil.copy2(default_options_file, self.options_file)

@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools >= 77.0.3"]
+requires = ["setuptools>=80", "setuptools-scm[simple]>=9.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -16,12 +16,19 @@ classifiers = [
 ]
 license = "GPL-3.0"
 license-files = ["LICEN[CS]E*"]
-version = "0.9.1"
+dynamic = ["version"]
 dependencies = [
     "pyserial >= 3.5",
     "ttkbootstrap >= 2.2",
     "platformdirs >= 4.14"
 ]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mypkg = ["*.xml", "*.csv"]
+
 [project.gui-scripts]
 uledocd = "uledocd_gui:uledocd_gui"
 
