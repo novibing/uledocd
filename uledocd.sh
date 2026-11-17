@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-_uledocd_dir="$(cd -- "$(dirname -- "$BASH_SOURCE")"; pwd)"
+# _uledocd_dir="$(cd -- "$(dirname -- "$BASH_SOURCE")"; pwd)"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	_data_dir="${HOME}/Library/Application Support/uledocd"
@@ -36,5 +36,5 @@ fi
 
 source "${_venv_dir}/bin/activate"
 pip install --upgrade pip
-pip install --upgrade dist/uledocd-0.9.3-py3-none-any.whl
+pip install --upgrade uledocd
 uledocd
