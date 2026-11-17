@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# _uledocd_dir="$(cd -- "$(dirname -- "$BASH_SOURCE")"; pwd)"
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	_data_dir="${HOME}/Library/Application Support/uledocd"
 else
