@@ -38,7 +38,7 @@ import glob
 from uledocd import ULEDOCD, Manufacturers
 from packets import LampProfile, ProfileName, ProfileBrightnessPercent, ProfileDelay
 
-MIN_WIDTH               = 1010
+MIN_WIDTH               = 1018
 MIN_HEIGHT              = 600
 
 DEFAULT_STERN_GAME      = "-Undefined Stern"
@@ -193,7 +193,7 @@ class ULEDOCD_GUI:
             self.app.createcommand("::tk::mac::Quit", self.on_closing)
 
         self.style = self.app.style
-        self.style.configure("gray.TFrame", background="gray30")
+        self.style.configure("gray.TFrame", background="gray80")
 
         # Register validation function
         self.val_text = self.app.register(limit_input_length)
@@ -234,6 +234,9 @@ class ULEDOCD_GUI:
         self.app_frame_left = Frame(self.app_frame, padding=1, bootstyle="@card")
         self.app_frame_left.pack(side='left', fill='y', expand=False)
         # self.app_frame_left.pack_propagate(0)
+
+        self.app_frame_middle_border = Frame(self.app_frame, padding=0, style='gray.TFrame')
+        self.app_frame_middle_border.pack(side='left', fill='both', expand=True)
 
         self.app_frame_right = Frame(self.app_frame, padding=1, bootstyle="@card")
         self.app_frame_right.pack(side='left', fill='y', expand=False)
