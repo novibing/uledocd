@@ -23,12 +23,6 @@ dependencies = [
     "platformdirs >= 4.14"
 ]
 
-[tool.setuptools.packages.find]
-where = ["src"]
-
-[tool.setuptools.package-data]
-mypkg = ["*.xml", "*.csv"]
-
 [project.gui-scripts]
 uledocd = "uledocd_gui:uledocd_gui"
 

@@ -20,6 +20,7 @@
 import platform
 import argparse
 from serial.tools import list_ports
+import importlib.metadata
 
 from uledocd import ULEDOCD, Manufacturers
 
@@ -101,6 +102,13 @@ def uledocd_cli():
                         choices=["WPC", "STERN", "CAPCOMA", "CAPCOMB"],
                         type=str,
                         help="set the game manufacturer (if not provided it will attempt to detect the platform)")
+
+    parser.add_argument(
+        "-v",
+        "--version",
+        action="version",
+        version=importlib.metadata.version("uledocd"),
+    )
     
     args = parser.parse_args()
 

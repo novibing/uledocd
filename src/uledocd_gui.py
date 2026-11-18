@@ -24,6 +24,7 @@ from ttkbootstrap.widgets import ToolTip
 from tkinter.constants import BOTH, YES, NO
 from platformdirs import PlatformDirs
 import shutil
+import importlib.metadata
 
 import platform
 import argparse
@@ -2053,6 +2054,13 @@ def uledocd_gui():
     parser.add_argument("-g", "--game_file", dest="game_file",
                         type=str,
                         help="set the game (if not provided it will select a default based on manufacturer)")
+
+    parser.add_argument(
+        "-v",
+        "--version",
+        action="version",
+        version=importlib.metadata.version("uledocd"),
+    )
     
     args = parser.parse_args()
 
