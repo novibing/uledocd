@@ -58,6 +58,18 @@ Again, most even semi-recent versions of macOS, Linux and Windows have the **FTD
 
 Install the driver as instructed - a reboot may be needed after installation - then try **Unofficial LED OCD** again.
 
+## Command-Line Interface
+
+The uledocd tool has some command-line options. They aren't needed, but to see the options and syntax enter this command:
+
+    uledocd --help
+
+In addition there is a uledocd-cli you can use to send commands to the LED OCD board and receive replies from it. You could use this to configure the board if you wanted to, but it's not great. I used it during development of uledocd and provide it in case anyone is interested in playing with it. To see the options and syntax enter this command:
+
+    uledocd-cli --help
+
+It is functional, but not elegant.
+
 ## What About GI OCD?
 
 The LED OCD board is for the controlled lamps. Their GI OCD board is for general illumination lamps. It's also amazing. **Unofficial LED OCD** is only for Comet's LED OCD board. But... I am working on **Unofficial GI OCD** now. Stay tuned.... For information on GI OCD and to purchase, see Comet's webpage for it:

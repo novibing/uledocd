@@ -21,7 +21,7 @@ from serial.tools import list_ports
 import serial
 from ttkbootstrap import *
 from ttkbootstrap.widgets import ToolTip
-from tkinter.constants import BOTH, YES, NO
+from tkinter.constants import BOTH, LEFT, RIGHT, X, Y, YES, NO
 from platformdirs import PlatformDirs
 import shutil
 import importlib.metadata
@@ -228,23 +228,19 @@ class ULEDOCD_GUI:
 
         # Frames to split the window into two overall areas with bordering frames that expand
         self.app_frame_left_border = Frame(self.app_frame, padding=1, style='gray.TFrame')
-        self.app_frame_left_border.pack(side='left', fill='both', expand=True)
-        # self.app_frame_left_border.pack_propagate(0)
+        self.app_frame_left_border.pack(side=LEFT, fill=BOTH, expand=YES)
 
         self.app_frame_left = Frame(self.app_frame, padding=1, bootstyle="@card")
-        self.app_frame_left.pack(side='left', fill='y', expand=False)
-        # self.app_frame_left.pack_propagate(0)
+        self.app_frame_left.pack(side=LEFT, fill=Y, expand=NO)
 
         self.app_frame_middle_border = Frame(self.app_frame, padding=0, style='gray.TFrame')
-        self.app_frame_middle_border.pack(side='left', fill='both', expand=True)
+        self.app_frame_middle_border.pack(side=LEFT, fill=BOTH, expand=YES)
 
         self.app_frame_right = Frame(self.app_frame, padding=1, bootstyle="@card")
-        self.app_frame_right.pack(side='left', fill='y', expand=False)
-        # self.app_frame_right.pack_propagate(0)
+        self.app_frame_right.pack(side=LEFT, fill=Y, expand=NO)
 
         self.app_frame_right_border = Frame(self.app_frame, padding=1, style='gray.TFrame')
-        self.app_frame_right_border.pack(side='left', fill='both', expand=True)
-        # self.app_frame_right_border.pack_propagate(0)
+        self.app_frame_right_border.pack(side=LEFT, fill=BOTH, expand=YES)
 
 
         # Frames on the left side
@@ -333,18 +329,23 @@ class ULEDOCD_GUI:
 
         self.app_frame_right_3.update()
 
-        self.log = ScrolledText(self.app_frame_right_4, auto_hide=True, padding=3, width=61, font=("Arial", 10))
-        # self.log = ScrolledText(self.app_frame_right_4, auto_hide=True, font=("Arial", 10))
+        self.log = ScrolledText(self.app_frame_right_4, auto_hide=YES, padding=3, width=61, font=("Arial", 10))
+        # self.log = ScrolledText(self.app_frame_right_4, auto_hide=YES, font=("Arial", 10))
         self.log.text.configure(state="disabled", font=("Arial", 10), wrap="word")
         self.log.text.tag_configure("time", background="white", foreground="gray60")
         self.log.text.tag_configure("info", background="white", foreground="black")
         self.log.text.tag_configure("warning", background="yellow", foreground="black")
         self.log.text.tag_configure("error", background="#AA0000", foreground="white")
-        self.log.pack(fill="both", expand=True, padx=3, pady=3)
+        self.log.pack(fill=BOTH, expand=YES, padx=3, pady=3)
         self.result.trace_add('write', self.update_log)
 
+        self.version = Label(self.app_frame_right_5, text="v" + importlib.metadata.version("uledocd"))
+        self.version.pack(side=LEFT, padx=3, pady=3)
         self.settings_button = Button(self.app_frame_right_5, icon="gear", command=self.show_options)
-        self.settings_button.pack(side='right', padx=3, pady=3)
+        self.settings_button.pack(side=RIGHT, padx=3, pady=3)
+        settings_label = Label(self.app_frame_right_5, text="Settings:")
+        settings_label.pack(side=RIGHT, padx=0, pady=3)
+
 
         self.app_frame_right_4.update()
         self.app_frame_right_4.configure()
@@ -417,14 +418,14 @@ class ULEDOCD_GUI:
 
         if self.advanced.get():
             for x in self.gui_in_advanced:
-                x.configure(state="!disabled", takefocus=True)
+                x.configure(state="!disabled", takefocus=YES)
             for x in self.gui_in_manual_advanced:
-                x.configure(state="!disabled", takefocus=True)
+                x.configure(state="!disabled", takefocus=YES)
         else:
             for x in self.gui_in_advanced:
-                x.configure(state="disabled", takefocus=False)
+                x.configure(state="disabled", takefocus=NO)
             for x in self.gui_in_manual_advanced:
-                x.configure(state="disabled", takefocus=False)
+                x.configure(state="disabled", takefocus=NO)
 
         self.app.update()
         self.app.mainloop()
@@ -887,8 +888,8 @@ class ULEDOCD_GUI:
     def build_lamp_matrix(self):
         profiles_vars = []
 
-        Label(self.app_frame_right_1, text="Min", justify="left").grid(sticky="ns", column = 3, row = 0)
-        Label(self.app_frame_right_1, text="Brightnesses", justify="right", font="-size 10 -weight bold").grid(sticky="ns", column = 4, row = 0, columnspan=3)
+        Label(self.app_frame_right_1, text="Min", justify=LEFT).grid(sticky="ns", column = 3, row = 0)
+        Label(self.app_frame_right_1, text="Brightnesses", justify=RIGHT, font="-size 10 -weight bold").grid(sticky="ns", column = 4, row = 0, columnspan=3)
         
         self.advanced = BooleanVar(value=False)
         self.advanced_toggle = Checkbutton(self.app_frame_right_1, text="Advanced", variable=self.advanced, bootstyle="square toggle", )
@@ -896,15 +897,15 @@ class ULEDOCD_GUI:
         self.gui_when_connected.append(self.advanced_toggle)
         self.advanced.trace_add('write', self.advanced_set_callback)
 
-        Label(self.app_frame_right_1, text="Max", justify="left").grid(sticky="ns", column = 10, row = 0)
+        Label(self.app_frame_right_1, text="Max", justify=LEFT).grid(sticky="ns", column = 10, row = 0)
 
-        Label(self.app_frame_right_1, text="#", justify="left").grid(sticky="ns", column = 0, row = 1)
-        Label(self.app_frame_right_1, text="Profile Name", justify="left").grid(sticky="ns", column = 2, row = 1)
-        Label(self.app_frame_right_1, text="Delay", justify="left").grid(sticky="ns", column = 11, row = 1, columnspan=2)
+        Label(self.app_frame_right_1, text="#", justify=LEFT).grid(sticky="ns", column = 0, row = 1)
+        Label(self.app_frame_right_1, text="Profile Name", justify=LEFT).grid(sticky="ns", column = 2, row = 1)
+        Label(self.app_frame_right_1, text="Delay", justify=LEFT).grid(sticky="ns", column = 11, row = 1, columnspan=2)
 
         for pnum in range (0, 8):
-            Label(self.app_frame_right_1, text=f"B{pnum+1}", justify="left", width=2).grid(column = pnum+3, row = 1)
-            Label(self.app_frame_right_1, text=pnum+1, justify="left", width=1).grid(sticky="ns", column = 0, row = pnum+3)
+            Label(self.app_frame_right_1, text=f"B{pnum+1}", justify=LEFT, width=2).grid(column = pnum+3, row = 1)
+            Label(self.app_frame_right_1, text=pnum+1, justify=LEFT, width=1).grid(sticky="ns", column = 0, row = pnum+3)
 
             curr_var_set = {}
             
@@ -913,7 +914,7 @@ class ULEDOCD_GUI:
             # ex: "Profile3_Name" with value "LED 35%"
             curr_var = StringVar(self.app, name=pname + "_Name", value="")
             curr_var_set.update({"name": curr_var})
-            curr_widget = Entry(self.app_frame_right_1, text="", textvariable=curr_var, width=8, justify="left", takefocus=True, validate="key", validatecommand=(self.val_text, "%P", 8))
+            curr_widget = Entry(self.app_frame_right_1, text="", textvariable=curr_var, width=8, justify=LEFT, takefocus=YES, validate="key", validatecommand=(self.val_text, "%P", 8))
             curr_widget.grid(sticky="ns", column = 2, row = pnum+3, padx=3, pady=3)
             self.gui_when_connected.append(curr_widget)
             self.gui_in_normal.append(curr_widget)
@@ -926,7 +927,7 @@ class ULEDOCD_GUI:
                     curr_var.trace_add("write", self.on_brightness)
 
                 curr_brightness_vars.append(curr_var)
-                curr_widget = Entry(self.app_frame_right_1, text="", textvariable=curr_var, width=3, justify="left", takefocus=True, state="disabled" if (bnum>=1 and bnum <= 6) else "normal", validate="key", validatecommand=(self.val_num, "%P", 0, 100))
+                curr_widget = Entry(self.app_frame_right_1, text="", textvariable=curr_var, width=3, justify=LEFT, takefocus=YES, state="disabled" if (bnum>=1 and bnum <= 6) else "normal", validate="key", validatecommand=(self.val_num, "%P", 0, 100))
                 curr_widget.bind("<FocusOut>", self.focus_out_profiles)
                 self.gui_when_connected.append(curr_widget)
                 self.gui_in_normal.append(curr_widget)
@@ -942,7 +943,7 @@ class ULEDOCD_GUI:
             curr_var = IntVar(self.app, name=pname + "_Delay", value = 0)
             curr_var_set.update({"delay": curr_var})
 
-            curr_widget = Entry(self.app_frame_right_1, text="", textvariable=curr_var, width=2, justify="left", takefocus=True, validate="key", validatecommand=(self.val_num, "%P", 0, 99))
+            curr_widget = Entry(self.app_frame_right_1, text="", textvariable=curr_var, width=2, justify=LEFT, takefocus=YES, validate="key", validatecommand=(self.val_num, "%P", 0, 99))
             curr_widget.bind("<FocusOut>", self.focus_out_profiles)
             curr_widget.grid(sticky="ns", column = 11, row = pnum+3, padx=3, pady=3)
             self.gui_when_connected.append(curr_widget)
@@ -972,19 +973,19 @@ class ULEDOCD_GUI:
         if self.advanced.get():
             if self.manual_mode:
                 for x in self.gui_in_manual_advanced:
-                    x.configure(state="!disabled", takefocus=True)
+                    x.configure(state="!disabled", takefocus=YES)
                 for x in self.gui_in_advanced:
-                    x.configure(state="disabled", takefocus=False)
+                    x.configure(state="disabled", takefocus=NO)
             else:
                 for x in self.gui_in_manual_advanced:
-                    x.configure(state="disabled", takefocus=False)
+                    x.configure(state="disabled", takefocus=NO)
                 for x in self.gui_in_advanced:
-                    x.configure(state="!disabled", takefocus=True)
+                    x.configure(state="!disabled", takefocus=YES)
         else:
             for x in self.gui_in_manual_advanced:
-                x.configure(state="disabled", takefocus=False)
+                x.configure(state="disabled", takefocus=NO)
             for x in self.gui_in_advanced:
-                x.configure(state="disabled", takefocus=False)
+                x.configure(state="disabled", takefocus=NO)
 
 
     def focus_out_profiles(self, event):
@@ -1049,7 +1050,7 @@ class ULEDOCD_GUI:
         # Build the lamp selection menu
         self.manual_window_width = 550
         self.manual_window_height = 395
-        self.manual_window = Toplevel(master=self.app, title="Manual Mode", size=(self.manual_window_width, self.manual_window_height), topmost=True)
+        self.manual_window = Toplevel(master=self.app, title="Manual Mode", size=(self.manual_window_width, self.manual_window_height), topmost=YES)
         self.manual_window.resizable(False, False)
         self.manual_window.on_close(self.manual_close)
         self.manual_window.withdraw()
@@ -1125,14 +1126,14 @@ If you wish to keep the brightness values B1 to B8, select a Profile to save the
         self.manual_brightness_vars = []
         bvals = gen_nums(20, 100, 8)
         for bnum in range (0, 8):
-            curr_label = Label(self.manual_window_frame_3, text=f"B{bnum+1}", justify="left", width=2).grid(column = bnum, row = 0, padx=3, pady=3)
+            curr_label = Label(self.manual_window_frame_3, text=f"B{bnum+1}", justify=LEFT, width=2).grid(column = bnum, row = 0, padx=3, pady=3)
             ToolTip(curr_label, text=f"Brightness {bnum+1}")
             curr_var = IntVar(self.app, name=f"Manual_Bright{bnum+1}", value = bvals[bnum])
             if bnum == 0 or bnum == 7:
                 curr_var.trace_add("write", self.on_manual_brightness)
 
             self.manual_brightness_vars.append(curr_var)
-            curr_widget = Entry(self.manual_window_frame_3, text="", textvariable=curr_var, width=3, justify="left", takefocus=True, state="disabled", validate="key", validatecommand=(self.val_num, "%P", 0, 100))
+            curr_widget = Entry(self.manual_window_frame_3, text="", textvariable=curr_var, width=3, justify=LEFT, takefocus=YES, state="disabled", validate="key", validatecommand=(self.val_num, "%P", 0, 100))
 
             self.gui_in_manual.append(curr_label)
             self.gui_in_manual.append(curr_widget)
@@ -1467,7 +1468,7 @@ If you wish to keep the brightness values B1 to B8, select a Profile to save the
     def show_options(self):
         options_width = 315
         options_height = 330
-        self.options_window = Toplevel(master=self.app, title="Options", size=(options_width, options_height), topmost=True, transient=self.app, resizable=(False, False))
+        self.options_window = Toplevel(master=self.app, title="Options", size=(options_width, options_height), topmost=YES, transient=self.app, resizable=(False, False))
         self.options_window.on_close(self.options_closed_callback)
 
         x = self.app.winfo_x() + self.app.winfo_width()//2 - options_width//2
@@ -1609,9 +1610,9 @@ If you wish to keep the brightness values B1 to B8, select a Profile to save the
 
         if not self.advanced.get():
             for x in self.gui_in_advanced:
-                x.configure(state="disabled", takefocus=False)
+                x.configure(state="disabled", takefocus=NO)
             for x in self.gui_in_manual_advanced:
-                x.configure(state="disabled", takefocus=False)
+                x.configure(state="disabled", takefocus=NO)
 
         self.set_progress(50)
 
@@ -1964,7 +1965,7 @@ If you wish to keep the brightness values B1 to B8, select a Profile to save the
 
                 pwidth = 500
                 pheight = 150
-                self.passthru_window = Toplevel(master=self.app, title="Passthrough Mode", size=(pwidth, pheight), topmost=True)
+                self.passthru_window = Toplevel(master=self.app, title="Passthrough Mode", size=(pwidth, pheight), topmost=YES)
                 self.passthru_window.transient(master=self.app)
                 self.passthru_window.resizable(False, False)
                 self.passthru_window.on_close(self.passthrough_close)
@@ -2023,9 +2024,9 @@ If you wish to keep the brightness values B1 to B8, select a Profile to save the
                     x.state(["!disabled"])
                 if not self.advanced.get():
                     for x in self.gui_in_advanced:
-                        x.configure(state="disabled", takefocus=False)
+                        x.configure(state="disabled", takefocus=NO)
                     for x in self.gui_in_manual_advanced:
-                        x.configure(state="disabled", takefocus=False)
+                        x.configure(state="disabled", takefocus=NO)
 
                 self.manual_mode = False
 
